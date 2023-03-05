@@ -70,7 +70,7 @@
                     @auth
                         @if(auth()->user()->rol == 'bibliotecario')
                             <form action="{{ route('libro.create') }}" method="get">
-                                <button type="submit" class="py-2.5 px-5 mr-2 mb-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"><i class="fa-solid fa-book"></i> Añadir libro</button>
+                                <button type="submit" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa-solid fa-book"></i> Añadir libro</button>
                             </form>
                         @endif
                     @endauth

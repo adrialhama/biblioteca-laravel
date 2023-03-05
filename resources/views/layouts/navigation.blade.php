@@ -22,6 +22,13 @@
                             {{ __('Mis préstamos') }}
                         </x-nav-link>
                     </div>
+                    @if(auth()->user()->rol == 'admin')
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                                {{ __('Panel Usuarios') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
                 @endauth
             </div>
             <!-- Settings Dropdown -->

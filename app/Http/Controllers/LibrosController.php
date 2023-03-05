@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\UserController;
 
 class LibrosController extends Controller
 {
@@ -66,9 +65,9 @@ class LibrosController extends Controller
      */
     public function show($id)
     {
-         // Para recuperar el modelo del libro por su id
+        // Para recuperar el modelo del libro por su id
         $libro = Libros::findOrFail($id);
-         // Para cargar la imagen que tenemos en public storage (El de arriba)
+        // Para cargar la imagen que tenemos en public storage (El de arriba)
         $url = 'storage/img/';
         return view('libro.show')->with('libro', $libro)->with('url', $url);
     }
@@ -98,7 +97,7 @@ class LibrosController extends Controller
             'descripcion' => 'required'
         ]);
         try {
-            // Carga los datos del coche
+            // Carga los datos del libro
             $mybook = Libros::findOrFail($id);
             $mybook->titulo = $request->titulo;
             $mybook->editorial = $request->editorial;

@@ -2,7 +2,8 @@
     <input type="text" class="rounded-lg" wire:model="buscar" placeholder="Buscar libros..." />
     <!--Muestro los todos los libros-->
     <div class="flex flex-row justify-center items-center flex-wrap mt-5">
-        @foreach ($libros as $libro)
+        @if ($libros->count())
+            @foreach ($libros as $libro)
             <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow flex-col flex-shrink m-5">
                 <a href="{{route('libro.show', ['libro'=>$libro->id])}}">
                     <img class="rounded-t-lg w-full" src="{{asset($url.$libro->foto)}}" alt="{{$libro->titulo}}" />
@@ -44,7 +45,10 @@
                     @endcan
                 </div>
             </div>
-        @endforeach
+            @endforeach
+        @else
+            <h2 class="text-2xl text-red-400">No se ha encontrado ningún libro</h2>
+        @endif
     </div>
 </div>
 

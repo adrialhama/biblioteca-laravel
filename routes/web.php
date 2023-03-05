@@ -42,11 +42,22 @@ Route::resource('prestamo', PrestamosController::class)->middleware(['auth', 've
  * Solo el usuario con rol de bibliotecario tendrá acceso a las rutas de edit, create y update.
  * Las rutas index y store serán visibles para el resto de usuarios
  */
+
 Route::middleware(['auth', 'role:bibliotecario'])->group(function () {
-    Route::resource('libro', 'LibroController')->except(['index', 'show']);
-    Route::post('libro/{id}', 'LibroController@update')->name('libro.update');
-    Route::get('/libro/create', [LibroController::class, 'create'])->name('libro.create');
-    Route::get('/libro/{id}/edit', [LibroController::class, 'edit'])->name('libro.edit');
-    Route::put('/libro/{id}', [LibroController::class, 'update'])->name('libro.update');
+    Route::resource('libro', LibrosController::class)->except(['index', 'show']);
+    Route::get('/libro/create', [LibrosController::class, 'create'])->name('libro.create');
+    Route::get('/libro/{libro}/edit', [LibrosController::class, 'edit'])->name('libro.edit');
+    Route::put('/libro/{libro}', [LibrosController::class, 'update'])->name('libro.update');
 });
+
+/**
+ * Las rutas de create y edit del UserController solo serán accesibles por usuarios con el rol de "admin"
+ */
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('user', [UserController::class, 'index'])->name('user.index');
+    Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+    Route::get('user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
+});
+
 
