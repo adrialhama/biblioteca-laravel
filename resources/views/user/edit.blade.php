@@ -4,9 +4,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h2 class="flex items-center text-3xl font-semibold text-gray-700 mb-5">Editar usuario</h2>
-                    <!--Formulario con el libro a editar-->
+                    <!--Formulario con el usuario a editar-->
                     <div class="w-3/4 mx-auto">
-                        <form action="{{ route('user.update', $user->id) }}" method="post"
+                        <form action="{{ route('user.update', $user->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group my-6">
@@ -46,8 +46,11 @@
                             </div>
                             <div class="form-group my-6">
                                 <label class="text-xl font-semibold text-gray-700 inline-block" for="rol">Rol:</label><br>
-                                <input type="text" name="rol" id="rol" class="form-control w-full"
-                                    value="{{ $user->rol }}">
+                                <select id="rol" name="rol" class="form-control w-full text-sm font-medium text-gray-900">
+                                    <option value="usuario">Usuario</option>
+                                    <option value="bibliotecario">Bibliotecario</option>
+                                    <option value="admin">Admin</option>
+                                </select>
                             </div>
                             <button type="submit my-6"
                                 class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Guardar

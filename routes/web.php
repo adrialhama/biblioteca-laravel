@@ -51,13 +51,16 @@ Route::middleware(['auth', 'role:bibliotecario'])->group(function () {
 });
 
 /**
- * Las rutas de create y edit del UserController solo serán accesibles por usuarios con el rol de "admin"
+ * Las rutas de index, create, edit y update del UserController solo serán accesibles por usuarios con el rol de "admin"
  */
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('user', [UserController::class, 'index'])->name('user.index');
+    Route::post('/user', [UserController::class, 'store'])->name('user.store');
     Route::get('user/create', [UserController::class, 'create'])->name('user.create');
     Route::get('user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
 });
+
+
 
 
