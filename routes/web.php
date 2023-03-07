@@ -38,6 +38,11 @@ Route::resource('libro', LibrosController::class)->middleware(['auth', 'verified
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('prestamo', PrestamosController::class)->middleware(['auth', 'verified']);
 
+
+Route::resource('libro', LibrosController::class)->middleware(['auth.basic']); // Esto es para autorizar las modificaciones de la BD que por defecto en el
+                                                                                // authorize() del ApiLibrosRequest viene a False
+
+
 /**
  * Solo el usuario con rol de bibliotecario tendrá acceso a las rutas de edit, create y update.
  * Las rutas index y store serán visibles para el resto de usuarios
@@ -49,6 +54,7 @@ Route::middleware(['auth', 'role:bibliotecario'])->group(function () {
     Route::get('/libro/{libro}/edit', [LibrosController::class, 'edit'])->name('libro.edit');
     Route::put('/libro/{libro}', [LibrosController::class, 'update'])->name('libro.update');
 });
+
 
 /**
  * Las rutas de index, create, edit y update del UserController solo serán accesibles por usuarios con el rol de "admin"
