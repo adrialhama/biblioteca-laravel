@@ -1,5 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
+        @if (session('status'))
+            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50"
+                role="alert">
+                <span class="font-medium"></span> {{ session('status') }}
+            </div>
+        @endif
         <h1 class="flex items-center text-4xl font-semibold text-blue-700 mb-5">Biblioteca Comares</h1>
         <!--Carrusel de imagenes-->
         <div id="controls-carousel" class="relative" data-carousel="static">

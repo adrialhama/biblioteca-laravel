@@ -2,6 +2,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            @if (session('status'))
+                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50"
+                    role="alert">
+                    <span class="font-medium"></span> {{ session('status') }}
+                </div>
+            @endif
                 <div class="p-6 text-gray-900">
                     <h2 class="flex items-center text-3xl font-semibold text-gray-700 mb-5">Préstamos Libros</h2>
                     <div class="relative overflow-x-auto">
