@@ -21,7 +21,8 @@ class PrestamosController extends Controller
     public function index()
     {
         $prestamos = Prestamos::all();
-        return view('prestamo.index')->with('prestamos', $prestamos);
+        $users = User::all();
+        return view('prestamo.index', compact('prestamos', 'users'));
     }
 
     /**
@@ -58,17 +59,11 @@ class PrestamosController extends Controller
      */
     public function show($id)
     {
-        // Obtener el préstamo correspondiente al id
-        $prestamo = Prestamos::findOrFail($id);
+    // Aquí hemos obtenido todos los préstamos asociados al usuario con su $id,
+    // y usando with('libro') para cargar en memoria los libros correspondientes a esos préstamos.
+    $prestamos = Prestamos::where('id_user', $id)->with('libro')->get();
 
-        // Obtener el usuario que ha realizado el préstamo
-        $usuario = User::findOrFail($prestamo->id_user);
-
-        // Obtener el libro que se ha prestado
-        $libro = Libros::findOrFail($prestamo->id_libro);
-
-        // Devuelvo la vista de detalles del préstamo
-        return view('prestamo.show', compact('prestamo', 'usuario', 'libro'));
+    return view('prestamo.show', compact('prestamos'));
     }
 
     /**

@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // Un usuario tiene varios prestamos
     public function prestamos()
     {
-        return $this->hasMany(Prestamo::class);
+        return $this->hasMany(Prestamo::class)->whereNull('fecha_devolucion');
     }
 
     // Este método comprueba si el rol del usuario es "bibliotecario" y devuelve un valor booleano indicando si es cierto o falso.

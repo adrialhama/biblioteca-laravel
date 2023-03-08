@@ -53,7 +53,13 @@ Route::middleware(['auth', 'role:bibliotecario'])->group(function () {
     Route::get('/libro/create', [LibrosController::class, 'create'])->name('libro.create');
     Route::get('/libro/{libro}/edit', [LibrosController::class, 'edit'])->name('libro.edit');
     Route::put('/libro/{libro}', [LibrosController::class, 'update'])->name('libro.update');
+    //Route::get('/prestamo/{prestamo}', [PrestamosController::class, 'show'])->name('prestamo.show');
+
 });
+
+Route::get('/prestamo/{prestamo}', [PrestamosController::class, 'show'])->name('prestamo.show');
+
+
 
 
 /**

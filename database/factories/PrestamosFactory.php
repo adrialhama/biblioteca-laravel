@@ -13,7 +13,7 @@ class PrestamosFactory extends Factory
     /**
      *Este código genera un número aleatorio para los campos id_user e id_libro
      * utilizando el método numberBetween del objeto $faker.
-     * Luego, genera la fecha de préstamo actual con Carbon::now() y agrega 30 días
+     * Luego, genera la fecha de préstamo actual con Carbon::now() y agrega 15 días
      * para generar la fecha de vencimiento.
      * La fecha de devolución se establece en null.
      *
@@ -22,11 +22,11 @@ class PrestamosFactory extends Factory
     public function definition(): array
     {
         $fecha_prestamo = Carbon::now();
-        $fecha_vencimiento = $fecha_prestamo->addDays(30);
+        $fecha_vencimiento = $fecha_prestamo->addDays(15);
 
         return [
-            'id_user' => $this->faker->numberBetween(1, 10),
-            'id_libro' => $this->faker->numberBetween(1, 20),
+            'id_user' => $this->faker->numberBetween(1, 5),
+            'id_libro' => $this->faker->numberBetween(1, 15),
             'fecha_prestamo' => $fecha_prestamo,
             'fecha_vencimiento' => $fecha_vencimiento,
             'fecha_devolucion' => null,
